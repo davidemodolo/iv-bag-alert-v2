@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/metadata.xsd" ?>
+<metadata>
+  <name>iv-bag-alert-v2</name>
+  <directory>iv-bag-alert-v2</directory>
+  <description>iv-bag-alert-v2 is a currently a work in progress.</description>
+  <version>1.0</version>
+  <visibility />
+</metadata>
