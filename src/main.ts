@@ -1,9 +1,5 @@
-import {
-  CollectibleType,
-  ModCallback,
-  SoundEffect,
-} from "isaac-typescript-definitions";
-import { getPlayerHealth, getPlayers } from "isaacscript-common";
+import { CollectibleType, ModCallback } from "isaac-typescript-definitions";
+import { getPlayers } from "isaacscript-common";
 import { name } from "../package.json";
 
 const HEARTS = 5;
@@ -41,7 +37,8 @@ function renderWarning() {
     reset = true;
   }
   for (const player of getPlayers()) {
-    if (getPlayerHealth(player).hearts >= HEARTS) {
+    const hearts = player.GetHearts() + player.GetSoulHearts();
+    if (hearts >= HEARTS) {
       reset = false;
     }
   }
@@ -49,9 +46,10 @@ function renderWarning() {
 
 function usedIVbag(): boolean {
   for (const player of getPlayers()) {
-    if (getPlayerHealth(player).hearts < HEARTS && !reset) {
+    const hearts = player.GetHearts() + player.GetSoulHearts();
+    if (hearts < HEARTS && !reset) {
       printText = true;
-      SFXManager().Play(SoundEffect.MOM_VOX_DEATH, 1, 0, false, 1);
+      SFXManager().Play(Isaac.GetSoundIdByName("Cahato"), 1, 0, false, 1);
       endingFrames = Isaac.GetFrameCount() + TEXT_SECONDS * 60;
     }
   }

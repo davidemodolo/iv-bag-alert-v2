@@ -1,0 +1,5 @@
+<sounds root="sfx/">
+  <sound name="Cahato">
+    <sample weight="1" path="cahato.wav"/>
+  </sound>
+</sounds>
