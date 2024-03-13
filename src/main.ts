@@ -8,25 +8,23 @@ import { name } from "../package.json";
 
 const HEARTS = 5;
 const TEXT_SECONDS = 3;
-const IVBAG = CollectibleType.IV_BAG;
 let printText = false;
+let reset = true;
 let endingFrames = -1;
 const font = Font();
 font.Load("font/pftempestasevencondensed.fnt");
-// This function is run when your mod first initializes.
+
 export function main(): void {
-  // Instantiate a new mod object, which grants the ability to add callback functions that
-  // correspond to in-game events.
   const mod = RegisterMod(name, 1);
 
-  mod.AddCallback(ModCallback.POST_USE_ITEM, usataIV, IVBAG);
+  mod.AddCallback(ModCallback.POST_USE_ITEM, usedIVbag, CollectibleType.IV_BAG);
   mod.AddCallback(ModCallback.POST_RENDER, renderWarning);
-  // Print a message to the "log.txt" file.
+
   Isaac.DebugString(`${name} initialized.`);
 }
 
 function renderWarning() {
-  if (printText) {
+  if (printText && !reset) {
     font.DrawStringScaled(
       "You are going to die!",
       43,
@@ -40,13 +38,18 @@ function renderWarning() {
   }
   if (endingFrames < Isaac.GetFrameCount()) {
     printText = false;
+    reset = true;
+  }
+  for (const player of getPlayers()) {
+    if (getPlayerHealth(player).hearts >= HEARTS) {
+      reset = false;
+    }
   }
 }
 
-function usataIV(): boolean {
-  // if player health is less than 2, print a message to the console
+function usedIVbag(): boolean {
   for (const player of getPlayers()) {
-    if (getPlayerHealth(player).hearts < HEARTS) {
+    if (getPlayerHealth(player).hearts < HEARTS && !reset) {
       printText = true;
       SFXManager().Play(SoundEffect.MOM_VOX_DEATH, 1, 0, false, 1);
       endingFrames = Isaac.GetFrameCount() + TEXT_SECONDS * 60;
