@@ -1,5 +1,11 @@
 <sounds root="sfx/">
-  <sound name="Cahato">
-    <sample weight="1" path="cahato.wav"/>
+  <sound name="Lu Bestemmia">
+    <sample weight="1" path="lu_bestemmia.wav"/>
+  </sound>
+  <sound name="Lu Limoni">
+    <sample weight="1" path="lu_limoni.wav"/>
+  </sound>
+  <sound name="Lu Urlo">
+    <sample weight="1" path="lu_urlo.wav"/>
   </sound>
 </sounds>

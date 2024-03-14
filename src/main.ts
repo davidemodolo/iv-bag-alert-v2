@@ -9,6 +9,7 @@ let reset = true;
 let endingFrames = -1;
 const font = Font();
 font.Load("font/pftempestasevencondensed.fnt");
+const audioNames = ["Lu Bestemmia", "Lu Limoni", "Lu Urlo"];
 
 export function main(): void {
   const mod = RegisterMod(name, 1);
@@ -49,7 +50,9 @@ function usedIVbag(): boolean {
     const hearts = player.GetHearts() + player.GetSoulHearts();
     if (hearts < HEARTS && !reset) {
       printText = true;
-      SFXManager().Play(Isaac.GetSoundIdByName("Cahato"), 1, 0, false, 1);
+      const randomAudio =
+        audioNames[Math.floor(Math.random() * audioNames.length)] ?? ""; // Ensure randomAudio is always a string
+      SFXManager().Play(Isaac.GetSoundIdByName(randomAudio), 1, 0, false, 1);
       endingFrames = Isaac.GetFrameCount() + TEXT_SECONDS * 60;
     }
   }
