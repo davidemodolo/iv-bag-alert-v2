@@ -1,11 +1,17 @@
 <sounds root="sfx/">
-  <sound name="Lu Bestemmia">
-    <sample weight="1" path="lu_bestemmia.wav"/>
+  <sound name="lu_danno">
+    <sample weight="1" path="lu_danno.wav" />
   </sound>
-  <sound name="Lu Limoni">
-    <sample weight="1" path="lu_limoni.wav"/>
+  <sound name="MagariSonoAlessio">
+    <sample weight="1" path="MagariSonoAlessio.wav" />
   </sound>
-  <sound name="Lu Urlo">
-    <sample weight="1" path="lu_urlo.wav"/>
+  <sound name="Trainer">
+    <sample weight="1" path="Trainer.wav" />
+  </sound>
+  <sound name="Larry">
+    <sample weight="1" path="Larry.wav" />
+  </sound>
+  <sound name="CAMarino">
+    <sample weight="1" path="CAMarino.wav" />
   </sound>
 </sounds>
